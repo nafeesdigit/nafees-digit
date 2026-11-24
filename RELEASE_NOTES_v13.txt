@@ -1,0 +1,16 @@
+WASA Kasur v13 — GIS & Field Navigation update
+
+Added:
+- Admin Settings > GIS Boundaries Management (Zones, Sub-Zones, polygon drawing/editing).
+- Boundary polygons displayed on Admin and Officer maps.
+- New GPS activity records receive Zone/Sub-Zone IDs and names when a point falls inside a saved polygon; older records are classified dynamically on map display without rewriting historical records.
+- Admin configurable consumer map marker size.
+- Officer in-app driving route panel using OSRM routing with route line, distance, ETA and step list; no Google Maps app switch.
+- GPS tracking points and online/offline status event records for daily route-history summaries in Admin Live Map.
+
+Important limitations:
+- Browser/PWA geolocation cannot guarantee continuous background tracking when the phone locks, the browser is suspended, permissions are denied, or the OS kills the app. Android native foreground service is required for dependable all-day background tracking.
+- GPS breadcrumb lines connect sampled points; they do not prove the exact road driven between pings. Stop detection is approximate. Increase tracking frequency for finer route detail (higher battery/data use).
+- OSRM public routing is best-effort and not traffic-aware; internet and map tiles are required.
+- The app still uses legacy custom phone/password login. Firestore rules remain permissive; do not treat this build as security-hardened production until Firebase Authentication and role-based rules are implemented.
+- Existing historical entries are not bulk rewritten; boundary membership is resolved from their GPS coordinates when viewed. Entries without valid GPS cannot be assigned geographically.
